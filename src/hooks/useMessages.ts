@@ -46,8 +46,9 @@ export const useMessages = (channelId: string | null, recipientId: string | null
       } else if (recipientId) {
         query = query
           .is('channel_id', null)
-          .or(`user_id.eq.${user.id},user_id.eq.${recipientId}`)
-          .or(`recipient_id.eq.${user.id},recipient_id.eq.${recipientId}`);
+          .or(
+            `and(user_id.eq.${user.id},recipient_id.eq.${recipientId}),and(user_id.eq.${recipientId},recipient_id.eq.${user.id})`
+          );
       }
 
       const { data, error } = await query;
