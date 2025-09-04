@@ -1,0 +1,13 @@
+# Netlify build configuration
+[build]
+  # Command to build the project
+  command = "yarn build"
+  # Directory to publish
+  publish = "dist"
+
+# Redirect rule for Single-Page Applications (SPAs)
+# This ensures that client-side routing works correctly.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
